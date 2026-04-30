@@ -10,16 +10,16 @@ This is only a basic prototpe with backend/Database integration.
 - Database storage for faults, fault assignments and user info.
 
 ## Client-side Testing
-'''bash
+```bash
 cd client
 npm start
-'''
+```
 
 ## Server-side Testing
-'''bash
+```bash
 cd server
 npm run dev
-'''
+```
 
 ## Notes
 This is a university and learning project so there is not much feature consolidation/updates past the functioning
