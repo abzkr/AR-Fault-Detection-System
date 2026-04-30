@@ -1,4 +1,4 @@
-#AR Fault Detection System
+# AR Fault Detection System
 Marker based fault detection prototype built for railway maintenance sites.Includes role-based access-control for maintenance personnel.
 This is only a basic prototpe with backend/Database integration. 
 
