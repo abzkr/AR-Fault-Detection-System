@@ -1,0 +1,89 @@
+.login-page {
+  background-color: #1a0000;  /* dark red background for the whole page */   
+  min-height: 100vh; /* makes it fill the full screen height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif; /* sets the text font */
+}
+
+/* The dark red box/card that contains the form */
+.login-card {
+  background-color: #2a0a0a;        /* slightly lighter dark red than the page */
+  padding: 2.5rem 2rem;             /* space inside the card */
+  border-radius: 12px;              /* rounded corners */
+  width: 100%;                      
+  max-width: 380px;                 
+  display: flex;                   
+  flex-direction: column;           
+  box-shadow: 0 4px 24px rgba(0,0,0,0.6); /* dark shadow around the card */
+}
+
+/* The "Maintenance Portal" title text */
+.login-card h1 {
+  color: rgb(218, 218, 218);
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;              
+  text-transform: uppercase;        
+  margin-bottom: 2rem;              /* space below the title */
+}
+
+/* The small "Worker ID" / "Password" labels above inputs */
+.input-label {
+  color: #aaa;                      /* light grey text */
+  font-size: 0.85rem;               /* slightly smaller than normal */
+  margin-bottom: 0.4rem;            /* small gap between label and input */
+}
+
+/* The input boxes */
+.login-card input {
+  width: 100%;
+  padding: 0.75rem 1rem;            /* space inside the input box */
+  margin-bottom: 1.5rem;            /* space below each input */
+  border: none;                     /* no border */
+  border-radius: 6px;               
+  background-color: #3d0f0f;       
+  color: white;                     
+  font-size: 1rem;
+  box-sizing: border-box;           /* padding doesn't break the width */
+  outline: none;                    /* removes default blue outline on click */
+}
+
+/* Input box when user clicks on it */
+.login-card input:focus {
+  background-color: #4a1212;        /* slightly lighter when active */
+}
+
+/* The grey hint text inside the input before typing */
+.login-card input::placeholder {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+/* The Sign In button */
+.login-btn {
+  width: 100%;
+  padding: 0.85rem;
+  background-color: #8b0000;       
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;                  /* shows hand cursor on hover */
+  margin-top: 0.5rem;
+  letter-spacing: 1px;
+}
+
+/* Button colour when mouse hovers over it */
+.login-btn:hover {
+  background-color: #a50000;        /* slightly brighter red on hover */
+}
+
+.error-msg {
+  color: white;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
