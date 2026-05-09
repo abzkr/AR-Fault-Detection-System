@@ -74,6 +74,29 @@
   transition: all 0.2s ease;
 }
 
+.btn {
+  position: fixed;
+  top: 16px;
+  right: 100px;
+
+  padding:9px 9px;
+  font-size: 7px;
+  font-weight: 600;
+
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  z-index: 1000; /* stays on top */
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  transition: all 0.2s ease;
+}
+
 .open-log-btn:hover {
   background-color: #444;
   transform: translateY(-1px);

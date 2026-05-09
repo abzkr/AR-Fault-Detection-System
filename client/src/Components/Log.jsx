@@ -1,19 +1,17 @@
-import { useEffect, useState } from 'react'
+import {useState} from 'react'
 import Fault from './Fault.js'
 import FaultBox from './FaultLogEntry.jsx'
 import "./Log.css" 
 
 // Manages rendering and interactions with faults
 
-export default function Log({faultType, LogStore, setLogStore}) { 
+export default function Log({LogStore, setLogStore}) { 
 
-   
-    // If log entry  field "added" = true, then skip and return as its already been added
-    const addFault = (faulType) => {
-        const newFault = new Fault(Date.now(), "Type", "Location", "Severity") 
-        setLogStore([...LogStore, newFault])
-    }
-     
+
+    const [searchId, setSearchId] = useState("")
+
+
+    // To remove a fault from the log
     const removeFault = (index) => {
         setLogStore(LogStore.filter((_, i) => i !== index))
     }
@@ -43,42 +41,53 @@ export default function Log({faultType, LogStore, setLogStore}) {
     }
 
     async function loadEntry(faultID){
-        try{
-            const response = await fetch ("Get-route", {
+        try { 
+            const response = await fetch (`/api/fault/${faultID}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
-            if(!response.ok){
+            if(!response.ok) {
                 console.log("Request failed")
             }
             const fault_json = await response.json() 
-            // Note -> check if these indexes work
-            // they need to line up with key-value pair defs
+           
             const new_fault = new Fault(
                 fault_json.faultID, 
                 fault_json.faultType,
-                fault_json.FaultLocation
+                fault_json.FaultLocation,
+                fault_json.faultSeverity
 
          )
             
             setLogStore([...LogStore, new_fault])
         }
-        catch(error){
+        catch(error) {
             console.log("There is no fault that exists with ID: ", faultID)
         }
 
     }
-
 
     return (
         // By end of session have basic container, have very general architecture, understand needed react logic
         <div>
             <div className='log_container'>
                 <div className='log_header'></div>
-                <button onClick={() => addFault("stress fault")}>Test Add Fault</button>
-                <button onClick={() => loadEntry()}>Load Fault</button>   
+                {/* <button onClick={() => addFault("stress fault")}>Test Add Fault</button> */}
+
+
+                <input 
+                type="text" 
+                placeholder='Enter Fault ID'
+                value={searchId}
+                onChange={(e) => setSearchId(e.target.value)}
+                />
+
+                <button className='btn' onClick={() => loadEntry(searchId)}>Load</button>
+
+                
+
                 {LogStore.map((faultObj, index) => 
                 <FaultBox 
                 key={index}
@@ -86,6 +95,7 @@ export default function Log({faultType, LogStore, setLogStore}) {
                 onSave={(f) => handleSave(f)}
                 onDelete={() => removeFault(index)}
                 />
+
             )}
             </div>
         
