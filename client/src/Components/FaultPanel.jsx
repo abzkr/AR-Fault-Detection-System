@@ -9,8 +9,7 @@ function FaultPanel({ fault, onFaultStored, onFaultDismissed }) {
     <div style={styles.panel}>
       <h2>Fault Detected</h2>
       <p><strong>Type:</strong> {fault.type}</p>
-      <p><strong>Severity:</strong> {fault.severity}</p>
-      <p><strong>Location:</strong> {fault.location}</p>
+     
 
       <div style={styles.buttons}>
         <button onClick={() => onFaultStored(fault)}>Store</button>
