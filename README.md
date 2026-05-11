@@ -14,8 +14,14 @@ This is only a basic prototpe with backend/Database integration.
 cd client
 npm start
 ```
+### Login
+The prototypes login/user-authentication system can be tested for the landing page desgined for the technician.
+To access this page, log in using the technicians mock credentials shown below.
 
-## Server-side Testing
+User: Technician
+Pass: secure456
+
+## Server-side 
 ```bash
 cd server
 npm run dev
