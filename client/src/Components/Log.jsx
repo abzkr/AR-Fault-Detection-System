@@ -19,12 +19,13 @@ export default function Log({LogStore, setLogStore}) {
     async function handleSave (faultObjSelected) {
         console.log("Saving fault:", faultObjSelected)
         try {
-            const response = await fetch ("Post-route ", {
+            const response = await fetch ('http://localhost:5000/api/fault', {
                 method: "POST",
-                data: JSON.stringify({
+                body: JSON.stringify({
                     faultID: faultObjSelected.faultID,
-                    faultLocation: faultObjSelected.FaultLocation,
-                    faultSeverity: faultObjSelected.severity
+                    faultType: faultObjSelected.faultType,
+                    location: faultObjSelected.location,
+                    severity: faultObjSelected.severity
                 }),
                 headers: {
                     "Content-Type": "application/json"
@@ -42,7 +43,7 @@ export default function Log({LogStore, setLogStore}) {
 
     async function loadEntry(faultID){
         try { 
-            const response = await fetch (`/api/fault/${faultID}`, {
+            const response = await fetch (`http://localhost:5000/api/fault/${faultID}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -56,8 +57,8 @@ export default function Log({LogStore, setLogStore}) {
             const new_fault = new Fault(
                 fault_json.faultID, 
                 fault_json.faultType,
-                fault_json.FaultLocation,
-                fault_json.faultSeverity
+                fault_json.location,
+                fault_json.severity
 
          )
             
@@ -74,8 +75,6 @@ export default function Log({LogStore, setLogStore}) {
         <div>
             <div className='log_container'>
                 <div className='log_header'></div>
-                {/* <button onClick={() => addFault("stress fault")}>Test Add Fault</button> */}
-
 
                 <input 
                 type="text" 
@@ -84,7 +83,7 @@ export default function Log({LogStore, setLogStore}) {
                 onChange={(e) => setSearchId(e.target.value)}
                 />
 
-                <button className='btn' onClick={() => loadEntry(searchId)}>Load</button>
+                <button className='load-btn' onClick={() => loadEntry(searchId)}>Load</button>
 
                 
 

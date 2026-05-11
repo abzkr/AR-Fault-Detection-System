@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Login.css'
 
-function LogIn() {
+function LogIn({onLoginAuthenticated}) {
 
   // These store what the user types
   const [workerID, setWorkerID] = useState("")
@@ -25,7 +25,7 @@ function LogIn() {
     setIsLoading(true)
 
     // Send worker ID and password to the server
-    const response = await fetch("http://localhost:3000/api/login", {
+    const response = await fetch("http://localhost:5000/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ workerID, password })
@@ -42,18 +42,7 @@ function LogIn() {
     }
 
     // Send user to the right page based on their role, for it to function, we need to create these routes and components in app.js
-    if (data.role === "Technician") {
-      window.location.href = "/technician"
-    }
-
-    if (data.role === "Engineer") {
-      window.location.href = "/engineer"
-    }
-
-    if (data.role === "DBO") {
-      window.location.href = "/dbo"
-    }
-
+    onLoginAuthenticated(data.role)
     setIsLoading(false)
   }
 
